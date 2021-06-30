@@ -1,9 +1,11 @@
 import './App.css';
 import React, {useState} from 'react'
-import { BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as HiIcons from "react-icons/hi";
+import * as MdIcons from "react-icons/md";
+import * as GiIcons from "react-icons/gi";
 
 
 
@@ -35,6 +37,16 @@ function Navbar() {
                     <Link to='/login' className="icons">
                     <HiIcons.HiOutlineLogin />Login/Signup
                     </Link>
+                    <Link to='/bikes' className="icons">
+                    <MdIcons.MdDirectionsBike />Bikes
+                    </Link>
+                    <Link to='/skates' className="icons">
+                    <GiIcons.GiRollerSkate />Skates
+                    </Link>
+                    <Link to='/skateboards' className="icons">
+                    <GiIcons.GiSkateboard/>Skateboards
+                    </Link>
+                    
                     </li>
                 </ul>
             </nav>

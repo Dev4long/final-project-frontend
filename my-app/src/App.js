@@ -5,14 +5,35 @@ import Signup from './Signup'
 import Login from './Login'
 import NavBar from './Navbar'
 import Home from './Home'
+import BikeContainer from './BikeContainer'
+import SkatesContainer from './SkatesContainer'
 
 
 class App extends React.Component {
 
   state = {
     userInfo: [],
+    bikes: [],
+    skates: [],
+    skateBoards: [],
   }
 
+
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/items', {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`
+      }
+    })
+      .then(res => res.json())
+      .then(items => this.setState({
+        bikes: items.filter(item => item.kind === "bike"),
+        skates: items.filter(item => item.kind === "skates"),
+        skateBoards: items.filter(item => item.kind === "skateboard")
+      })
+      )
+  }
 
 
 
@@ -70,6 +91,10 @@ class App extends React.Component {
 
 
   render() {
+
+
+   
+
     return (
       <div>
         <Router>
@@ -81,12 +106,14 @@ class App extends React.Component {
               <Signup signup={this.signup} />
               {this.state.userInfo.id >= 1 ? <button className={"button"}onClick={this.logOut}>Logout</button> : null}
             </Route>
+            <Route path = '/bikes' >
+              <BikeContainer bikes={this.state.bikes}/>
+            </Route>
+            <Route path = '/skates' >
+              <SkatesContainer skates={this.state.skates}/>
+            </Route>
           </Switch>
         </Router>
-        
-        {/* <Login login={this.login} />
-        <Signup signup={this.signup} />
-        <button className={"button"}onClick={this.logOut}>Logout</button> */}
       </div>
     )
   }

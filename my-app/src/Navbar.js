@@ -10,6 +10,7 @@ import * as GiIcons from "react-icons/gi";
 
 
 
+
 function Navbar() {
     const[sidebar, setBar] = useState(false)
 
@@ -43,9 +44,13 @@ function Navbar() {
                     <Link to='/skates' className="icons">
                     <GiIcons.GiRollerSkate />Skates
                     </Link>
-                    <Link to='/skateboards' className="icons">
-                    <GiIcons.GiSkateboard/>Skateboards
+                    <Link to='/cart' className="icons">
+                    <HiIcons.HiOutlineShoppingCart />My cart
                     </Link>
+                    
+                    {/* <Link to='/skateboards' className="icons">
+                    <GiIcons.GiSkateboard/>Skateboards
+                    </Link> */}
                     
                     </li>
                 </ul>

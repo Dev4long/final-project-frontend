@@ -13,7 +13,7 @@ class SkateCard extends React.Component {
        <img alt="skates" src={this.props.skate.image}/>
        <h3>{this.props.skate.price}$</h3>
        <h3>{this.props.skate.rating}⭐</h3>
-       <button>Add to cart</button>
+       {this.props.userInfo.id >= 1 ? <button onClick={() => this.props.addItem(this.props.skate)}>Add to cart</button> :null}
       </div>
     )
   }

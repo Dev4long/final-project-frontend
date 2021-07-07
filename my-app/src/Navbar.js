@@ -6,6 +6,8 @@ import * as AiIcons from "react-icons/ai";
 import * as HiIcons from "react-icons/hi";
 import * as MdIcons from "react-icons/md";
 import * as GiIcons from "react-icons/gi";
+import * as CgIcons from "react-icons/cg";
+import * as FiIcons from "react-icons/fi";
 
 
 
@@ -16,7 +18,7 @@ function Navbar() {
 
     const showBar = () => setBar(!sidebar)
     return (
-        <div>
+        <div className="navbarAll">
             <div className="navbar">
                 <Link to="#" className="menu-bars">
                 <FaIcons.FaBars onClick={showBar}/>
@@ -35,6 +37,9 @@ function Navbar() {
                     </Link>
                     </li>
                     <li>
+                    <Link to='/events' className="icons">
+                    <FiIcons.FiMapPin />Local events
+                    </Link>
                     <Link to='/login' className="icons">
                     <HiIcons.HiOutlineLogin />Login/Signup
                     </Link>
@@ -47,6 +52,12 @@ function Navbar() {
                     <Link to='/cart' className="icons">
                     <HiIcons.HiOutlineShoppingCart />My cart
                     </Link>
+                    <Link to='/profile' className="icons">
+                    <CgIcons.CgProfile />My profile
+                    </Link>
+                    <Link to='/map' className="icons">
+                    <GiIcons.GiPathDistance />Plan route
+                    </Link>
                     
                     {/* <Link to='/skateboards' className="icons">
                     <GiIcons.GiSkateboard/>Skateboards
@@ -58,6 +69,7 @@ function Navbar() {
         </div>
     )
 }
+// FiMapPin
 
 export default Navbar
 

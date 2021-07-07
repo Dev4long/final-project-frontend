@@ -6,8 +6,7 @@ class Cart extends React.Component {
 
   render() {
 
-    let cartFilter = (this.props.cart.filter(cart => cart.user_id === this.props.userInfo.id))
-    console.log(cartFilter);
+    
 
     return (
       <div>

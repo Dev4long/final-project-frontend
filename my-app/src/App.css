@@ -5,6 +5,29 @@
   font-family: 'Lato', sans-serif;
 }
 
+/* .bikes {
+position: relative;
+z-index: -1;  
+} */
+
+.bikeImg{
+  position: relative;
+z-index: -1; 
+}
+
+.profileImg{
+  position: relative;
+z-index: -1; 
+}
+
+
+
+
+.MapContainer {
+  position: relative;
+  z-index: -1; 
+}
+
 
 .navbar {
 background-color:black ;
@@ -12,6 +35,8 @@ height: 80px;
 display: flex;
 justify-content: flex-start;
 align-items: center;
+
+
 }
 .menu-bars {
   margin-left: 2rem;

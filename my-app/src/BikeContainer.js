@@ -14,7 +14,7 @@ class BikeContainer extends React.Component {
 
 
     return (
-      <div>
+      <div className= 'bikes'>
        {this.props.bikes.map(bike => { return <BikeCard bike={bike} key={bike.id} addItem={this.props.addItem} cart={this.props.cart} userInfo={this.props.userInfo}/>  })}
       </div>
     )

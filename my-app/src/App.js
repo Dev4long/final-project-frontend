@@ -8,7 +8,9 @@ import Home from './Home'
 import BikeContainer from './BikeContainer'
 import SkatesContainer from './SkatesContainer'
 import Cart from './Cart'
-
+import Profile from './Profile'
+import MapContainer from './MapContainer'
+import EventsContainer from './EventsContainer'
 
 
 
@@ -40,17 +42,18 @@ class App extends React.Component {
         skateBoards: items.filter(item => item.kind === "skateboard")
       })
       )
-      fetch('http://localhost:3000/api/v1/carts', {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${localStorage.token}`
-      }
-    })
-      .then(res => res.json())
-      .then(cart => this.setState({
-        cart: cart
-      })
-      )
+    //   fetch('http://localhost:3000/api/v1/carts', {
+    //   method: "GET",
+    //   headers: {
+    //     "Authorization": `Bearer ${localStorage.token}`
+    //   }
+    // })
+    //   .then(res => res.json())
+    //   .then(cart => this.setState({
+    //     cart: cart
+    //   })
+    //   )
+      
   }
 
   
@@ -104,37 +107,38 @@ class App extends React.Component {
         if (userInfo.token) {
           this.setState({
           userInfo: userInfo.user,
+          // cart: userInfo.user.carts
           })
           console.log(userInfo.user)
         }
       })
   }
-  // cart: userInfo.user.carts
+  
 
 
   // LocalStorage.token? button oclick logout = const localstorage.clear
   // userInfo.token try to use this for if user loggin to conditionally render the logout button
   
 
-  deleteItem = (itemObj) => {
+  // deleteItem = (itemObj) => {
     
-    let deletedCartArr = this.state.cart.filter(item => item.item_id !== itemObj.id)
+  //   let deletedCartArr = this.state.cart.filter(item => item.item_id !== itemObj)
     
-    fetch(`http://localhost:3000/api/v1/carts/${itemObj.id}`, {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Bearer ${localStorage.token}`,
-        "Content-Type": "application/json"
-      },
-    })
-      .then(res => res.json())
-      .then(() => {
-        this.setState({
-          cart: deletedCartArr
-        })
+  //   fetch(`http://localhost:3000/api/v1/carts/${itemObj}`, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Authorization": `Bearer ${localStorage.token}`,
+  //       "Content-Type": "application/json"
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(() => {
+  //       this.setState({
+  //         cart: deletedCartArr
+  //       })
 
-      })
-  }
+  //     })
+  // }
 
   addItem = (itemObj) => {
     let newCartArray = [...this.state.cart, itemObj]
@@ -143,8 +147,16 @@ class App extends React.Component {
   }
 
 
+  updateProfile= (updatedProfile) => {
+    this.setState({userInfo: updatedProfile})
+  }
   
-
+  deleteItem = (itemObj) => {
+    let deletedCartArr = this.state.cart.filter(item => item.id !== itemObj)
+    this.setState({
+              cart: deletedCartArr
+            })
+  }
   render() {
 
    
@@ -166,10 +178,19 @@ class App extends React.Component {
               <BikeContainer bikes={this.state.bikes} addItem={this.addItem} cart={this.state.cart} userInfo={this.state.userInfo}/>
             </Route>
             <Route path = '/skates' >
-              <SkatesContainer skates={this.state.skates}/>
+              <SkatesContainer skates={this.state.skates} addItem={this.addItem} cart={this.state.cart} userInfo={this.state.userInfo}/>
             </Route>
             <Route path = '/cart' >
              <Cart cart={this.state.cart} userInfo={this.state.userInfo} deleteItem={this.deleteItem}/>
+            </Route>
+            <Route path = '/profile' >
+             <Profile profile={this.state.userInfo} updateProfile={this.updateProfile}/>
+            </Route>
+            <Route path = '/map' >
+             <MapContainer />
+            </Route>
+            <Route path = '/events' >
+             <EventsContainer />
             </Route>
             {/* <Route path = '/skateboards' >
              <BoardContainer boards={this.state.skateBoards}/>

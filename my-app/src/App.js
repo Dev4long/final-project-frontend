@@ -11,6 +11,7 @@ import Cart from './Cart'
 import Profile from './Profile'
 import MapContainer from './MapContainer'
 import EventsContainer from './EventsContainer'
+import PurchaseContainer from './PurchaseContainer'
 
 
 
@@ -19,11 +20,12 @@ class App extends React.Component {
  
   state = {
     userInfo: [],
-    // items: [],
+    events: [],
     bikes: [],
     skates: [],
     skateBoards: [],
     cart: [],
+    purchases: [],
     
   }
  
@@ -42,18 +44,28 @@ class App extends React.Component {
         skateBoards: items.filter(item => item.kind === "skateboard")
       })
       )
-    //   fetch('http://localhost:3000/api/v1/carts', {
-    //   method: "GET",
-    //   headers: {
-    //     "Authorization": `Bearer ${localStorage.token}`
-    //   }
-    // })
-    //   .then(res => res.json())
-    //   .then(cart => this.setState({
-    //     cart: cart
-    //   })
-    //   )
-      
+      fetch('http://localhost:3000/api/v1/events', {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${localStorage.token}`
+        }
+      })
+        .then(res => res.json())
+        .then(events=> this.setState({
+          events: events
+        })
+        )
+        fetch('http://localhost:3000/api/v1/purchases', {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${localStorage.token}`
+        }
+      })
+        .then(res => res.json())
+        .then(purchase => this.setState({
+          purchases: purchase
+        })
+        )
   }
 
   
@@ -107,7 +119,7 @@ class App extends React.Component {
         if (userInfo.token) {
           this.setState({
           userInfo: userInfo.user,
-          // cart: userInfo.user.carts
+          // purchases: userInfo.user.purchases
           })
           console.log(userInfo.user)
         }
@@ -143,6 +155,12 @@ class App extends React.Component {
   addItem = (itemObj) => {
     let newCartArray = [...this.state.cart, itemObj]
     this.setState({ cart: newCartArray })
+  
+  }
+  
+  addPurchase = (perchObj) => {
+    let newPurchArray = [...this.state.purchases, perchObj]
+    this.setState({ purchases: newPurchArray })
   
   }
 
@@ -181,7 +199,7 @@ class App extends React.Component {
               <SkatesContainer skates={this.state.skates} addItem={this.addItem} cart={this.state.cart} userInfo={this.state.userInfo}/>
             </Route>
             <Route path = '/cart' >
-             <Cart cart={this.state.cart} userInfo={this.state.userInfo} deleteItem={this.deleteItem}/>
+             <Cart cart={this.state.cart} userInfo={this.state.userInfo} purchaseItem={this.addPurchase} deleteItem={this.deleteItem}/>
             </Route>
             <Route path = '/profile' >
              <Profile profile={this.state.userInfo} updateProfile={this.updateProfile}/>
@@ -190,7 +208,10 @@ class App extends React.Component {
              <MapContainer />
             </Route>
             <Route path = '/events' >
-             <EventsContainer />
+             <EventsContainer events ={this.state.events} userInfo={this.state.userInfo}/>
+            </Route>
+            <Route path = '/purchase' >
+            {this.state.userInfo.id >= 1 ?  <PurchaseContainer purchases={this.state.purchases} userInfo={this.state.userInfo}/>:null}
             </Route>
             {/* <Route path = '/skateboards' >
              <BoardContainer boards={this.state.skateBoards}/>

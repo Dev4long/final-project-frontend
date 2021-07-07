@@ -8,6 +8,7 @@ import * as MdIcons from "react-icons/md";
 import * as GiIcons from "react-icons/gi";
 import * as CgIcons from "react-icons/cg";
 import * as FiIcons from "react-icons/fi";
+import * as BiIcons from "react-icons/bi";
 
 
 
@@ -52,6 +53,9 @@ function Navbar() {
                     <Link to='/cart' className="icons">
                     <HiIcons.HiOutlineShoppingCart />My cart
                     </Link>
+                    <Link to='/purchase' className="icons">
+                    <BiIcons.BiPurchaseTag />My purchases
+                    </Link>
                     <Link to='/profile' className="icons">
                     <CgIcons.CgProfile />My profile
                     </Link>
@@ -69,7 +73,7 @@ function Navbar() {
         </div>
     )
 }
-// FiMapPin
+// BiPurchaseTag
 
 export default Navbar
 

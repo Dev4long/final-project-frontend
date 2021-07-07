@@ -23,7 +23,7 @@ class Profile extends React.Component {
     return (
       <div className="profile">
        <h3>{this.props.profile.name}</h3>
-       <img alt= 'profile' className = "profileImg"src={this.props.profile.pic}/>
+       <img alt= 'profile' className = "profileImg" src={this.props.profile.pic}/>
        <h3>Age:{this.props.profile.age}</h3>
        <h3>Email:{this.props.profile.email}</h3>
        <h3>Bio:{this.props.profile.bio}</h3>

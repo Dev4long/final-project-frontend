@@ -1,9 +1,10 @@
 import React from 'react'
+import './App.css';
 
 function Home() {
     return (
-        <div>
-           Urban riders
+        <div className="home">
+           <div className="homeT">Urban riders</div>
         </div>
     )
 }

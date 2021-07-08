@@ -5,12 +5,13 @@
   font-family: 'Lato', sans-serif;
 }
 
+
 /* .bikes {
 position: relative;
 z-index: -1;  
 } */
 
-.bikeImg, .eventImg{
+.bikeImg, .eventImg, .boardImg, .skateImg{
   position: relative;
   z-index: -1; 
 

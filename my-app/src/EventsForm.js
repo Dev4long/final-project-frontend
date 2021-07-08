@@ -9,37 +9,41 @@ import "react-time-picker/dist/TimePicker.css"
 
 
 function EventsForm(props) {
-    let [workoutDescription, setDescription] = useState("")
-    let [selectedDate, setSelectedDate] = useState(null);
-    let [value, onChange] = useState('12:00');
-    let [durationPrice, setDurationPrice] = useState(0)
+    let [description, setDescription] = useState("")
+    let [selectedDate, setSelectedDate] = useState("");
+    let [time, onChange] = useState('12:00');
+    let [image, setImage] = useState("")
+    let [location, setLocation] = useState("")
     
 
     let handleSubmit = (e) => {
         e.preventDefault()
-        fetch('http://localhost:9292/clients', {
+        fetch('http://localhost:3000/api/v1/events', {
           method: "POST",
           headers: {
-            "Content-type": "Application/json"
+            "Content-type": "Application/json",
+            "Authorization": `Bearer ${localStorage.token}`
           },
           body: JSON.stringify({
-            workout_description: workoutDescription,
+            description: description,
+            image: image,
+            location: location,
+            time: time,
             date: selectedDate,
-            time: value,
-            price: durationPrice,
-            client_id: props.clientObject.id,
-            trainer_id: props.trainer.id,
+            user_id: props.userInfo.id
+            
+
           })
         })
           .then(res => res.json())
-          .then(newSession => {
-            props.addSession(newSession)
-            console.log(newSession)
-            setDescription("")
-            setSelectedDate("")
-            onChange("")
-            setDurationPrice("")
-            alert("Session booked! Happy Training.")
+          .then(newEvent => {
+            props.addEvent(newEvent)
+            console.log(newEvent)
+            // setDescription("")
+            // setSelectedDate("")
+            // onChange("")
+            // setDurationPrice("")
+            alert("Event posted")
           })
     }
   //  console.log(props.mySessions.sessions)
@@ -50,21 +54,22 @@ function EventsForm(props) {
         return (
             <div className="container">
           <form onSubmit={handleSubmit} className="add-session-form" >
-            <h3>Book a session!</h3>
-            <br/>
-            <label>
-         <strong>Workout type:</strong>
-         <select
-          onChange={(e) => {setDescription(e.target.value)}}>
-          <option value="all">Select...</option>
-          <option value="cardio">Cardio</option>
-          <option value="weight training">Weight training</option>
-          <option value="calisthenic training">Calisthenic training</option>
-          <option value="strength training">Strength training</option>
-          </select>
-            </label>
-            <br/>
+            <h3>Create event</h3>
+            <br></br>
+            <strong>Event description</strong>
+            <br></br>
+            <textarea placeholder="Enter event description" onChange={(e) => {setDescription(e.target.value)}}></textarea>
+            <br></br>
+            <strong>Event Image</strong>
+            <br></br>
+            <input placeholder="Enter pic url" onChange={(e) => {setImage(e.target.value)}}></input>
+            <br></br>
+            <strong>Event Location</strong>
+            <br></br>
+            <input placeholder="Enter a location" onChange={(e) => {setLocation(e.target.value)}}></input>
+            <br></br>
             <strong>Select a date:</strong>
+            <br></br>
             <DatePicker 
             selected={selectedDate}
             onChange={date => setSelectedDate(date)}
@@ -76,25 +81,18 @@ function EventsForm(props) {
             <br></br>
             <TimePicker
             onChange={onChange}
-            value={value}
+            // value={value}
             />
             <br/>
-            <strong>Session duration:</strong>
-            <select
-            onChange={(e) => {setDurationPrice(e.target.value)}}>
-          <option value="all">Select...</option>
-          <option value={75}>30 min session = $75</option>
-          <option value={100}>1 hour session = $100</option>
-          <option value={150}>2 hour session = $150</option>
-          </select>
+           
           <br/>
           <br/>
             <input 
                 type="submit" 
                 name="submit" 
-                value="Book a new Session" 
+                value="Post new event" 
                 className="submit"
-                class="btn btn-primary mr-1"
+                // class="btn btn-primary mr-1"
             />
           </form>
         </div>

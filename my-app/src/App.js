@@ -12,6 +12,7 @@ import Profile from './Profile'
 import MapContainer from './MapContainer'
 import EventsContainer from './EventsContainer'
 import PurchaseContainer from './PurchaseContainer'
+import BoardContainer from './BoardContainer'
 
 
 
@@ -26,6 +27,7 @@ class App extends React.Component {
     skateBoards: [],
     cart: [],
     purchases: [],
+    items: [],
     
   }
  
@@ -38,7 +40,7 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .then(items => this.setState({
-        // items: items
+        items: items,
         bikes: items.filter(item => item.kind === "bike"),
         skates: items.filter(item => item.kind === "skates"),
         skateBoards: items.filter(item => item.kind === "skateboard")
@@ -55,17 +57,17 @@ class App extends React.Component {
           events: events
         })
         )
-        fetch('http://localhost:3000/api/v1/purchases', {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${localStorage.token}`
-        }
-      })
-        .then(res => res.json())
-        .then(purchase => this.setState({
-          purchases: purchase
-        })
-        )
+      //   fetch('http://localhost:3000/api/v1/purchases', {
+      //   method: "GET",
+      //   headers: {
+      //     "Authorization": `Bearer ${localStorage.token}`
+      //   }
+      // })
+      //   .then(res => res.json())
+      //   .then(purchase => this.setState({
+      //     purchases: purchase
+      //   })
+      //   )
   }
 
   
@@ -119,7 +121,7 @@ class App extends React.Component {
         if (userInfo.token) {
           this.setState({
           userInfo: userInfo.user,
-          // purchases: userInfo.user.purchases
+          purchases: userInfo.user.purchases
           })
           console.log(userInfo.user)
         }
@@ -158,6 +160,11 @@ class App extends React.Component {
   
   }
   
+  addEvent = (eventObj) => {
+    let newEventArray = [...this.state.events, eventObj]
+    this.setState({ events: newEventArray })
+  
+  }
   addPurchase = (perchObj) => {
     let newPurchArray = [...this.state.purchases, perchObj]
     this.setState({ purchases: newPurchArray })
@@ -177,7 +184,7 @@ class App extends React.Component {
   }
   render() {
 
-   
+  //  console.log(this.state.items.map(item => item.id)) === (this.state.purchases.map(purchase => purchase.item_id))
   //  console.log(this.state.cart.filter(cart => cart.user_id === this.state.userInfo.id))
 
     return (
@@ -195,6 +202,9 @@ class App extends React.Component {
             <Route path = '/bikes' >
               <BikeContainer bikes={this.state.bikes} addItem={this.addItem} cart={this.state.cart} userInfo={this.state.userInfo}/>
             </Route>
+            <Route path = '/skateboards' >
+             <BoardContainer boards={this.state.skateBoards} addItem={this.addItem} cart={this.state.cart} userInfo={this.state.userInfo}/>
+            </Route>
             <Route path = '/skates' >
               <SkatesContainer skates={this.state.skates} addItem={this.addItem} cart={this.state.cart} userInfo={this.state.userInfo}/>
             </Route>
@@ -208,14 +218,12 @@ class App extends React.Component {
              <MapContainer />
             </Route>
             <Route path = '/events' >
-             <EventsContainer events ={this.state.events} userInfo={this.state.userInfo}/>
+             <EventsContainer events ={this.state.events} userInfo={this.state.userInfo} addEvent ={this.addEvent}/>
             </Route>
             <Route path = '/purchase' >
-            {this.state.userInfo.id >= 1 ?  <PurchaseContainer purchases={this.state.purchases} userInfo={this.state.userInfo}/>:null}
+            {this.state.userInfo.id >= 1 ?  <PurchaseContainer purchases={this.state.purchases} items = {this.state.items} userInfo={this.state.userInfo}/>:null}
             </Route>
-            {/* <Route path = '/skateboards' >
-             <BoardContainer boards={this.state.skateBoards}/>
-            </Route> */}
+            
           </Switch>
         </Router>
       </div>

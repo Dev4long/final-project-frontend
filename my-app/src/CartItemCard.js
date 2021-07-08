@@ -42,7 +42,7 @@ class CartItemCard extends React.Component {
     return (
       <div>
        <h3>{this.props.item.name}</h3>
-       <img alt="bike" src={this.props.item.image}/>
+       <img alt="bike" className= "bikeImg"src={this.props.item.image}/>
        <h3>{this.props.item.price}$</h3>
        <h3>{this.props.item.rating}⭐</h3>
        <button onClick={() => this.props.deleteItem(this.props.item.id)}>Remove from cart</button>

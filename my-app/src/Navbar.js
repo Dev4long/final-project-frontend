@@ -47,6 +47,9 @@ function Navbar() {
                     <Link to='/bikes' className="icons">
                     <MdIcons.MdDirectionsBike />Bikes
                     </Link>
+                    <Link to='/skateboards' className="icons">
+                    <GiIcons.GiSkateboard/>Skateboards
+                    </Link>
                     <Link to='/skates' className="icons">
                     <GiIcons.GiRollerSkate />Skates
                     </Link>
@@ -63,9 +66,7 @@ function Navbar() {
                     <GiIcons.GiPathDistance />Plan route
                     </Link>
                     
-                    {/* <Link to='/skateboards' className="icons">
-                    <GiIcons.GiSkateboard/>Skateboards
-                    </Link> */}
+                    
                     
                     </li>
                 </ul>

@@ -26,9 +26,8 @@ class Cart extends React.Component {
       .then(res => res.json())
       .then(perchObj => {
         this.props.purchaseItem(perchObj)
-        console.log(perchObj)
-        // this.props.addItem(itemObj)
-        // alert("Bike placed in your cart")
+        // console.log(perchObj)
+        alert("Item purchased")
       })
   }
 

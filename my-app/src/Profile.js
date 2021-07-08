@@ -27,7 +27,10 @@ class Profile extends React.Component {
        <h3>Age:{this.props.profile.age}</h3>
        <h3>Email:{this.props.profile.email}</h3>
        <h3>Bio:{this.props.profile.bio}</h3>
-       {this.props.profile.id >= 1 ? <button onClick={() => this.handleProfileForm()}>Edit profile</button>:null}
+       <br></br>
+       <br></br>
+       <br></br>
+       {this.props.profile.id >= 1 ? <button className= "glow-on-hover" onClick={() => this.handleProfileForm()}>Edit profile</button>:null}
        {this.state.profileForm ? <ProfileForm updateProfile={this.props.updateProfile} profile={this.props.profile}/>:null}
       </div>
     )

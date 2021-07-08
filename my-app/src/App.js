@@ -98,6 +98,7 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .then(console.log)
+      alert("Succesfully signed up")
   }
 
 
@@ -123,6 +124,7 @@ class App extends React.Component {
           userInfo: userInfo.user,
           purchases: userInfo.user.purchases
           })
+          alert("Welcome back")
           console.log(userInfo.user)
         }
       })

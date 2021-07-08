@@ -69,13 +69,16 @@ let [bio,setBio] = useState("")
       <br></br>
       <textarea placeholder="Enter your description" onChange={(e) => {setBio(e.target.value)}}></textarea>
       <br></br>
-      <input 
+      <br></br>
+      <br></br>
+      <button  className= "glow-on-hover" >Save Changes</button>
+      {/* <input 
                 type="submit" 
                 name="submit" 
                 value="Save changes" 
-                className="submit"
+                className= "glow-on-hover"
                 // class="profileButton"
-            />
+            /> */}
       </form>
       </div>
     )

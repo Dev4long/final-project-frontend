@@ -229,8 +229,8 @@ class App extends React.Component {
             {this.state.userInfo.id >= 1 ?  <PurchaseContainer purchases={this.state.purchases} items = {this.state.items} userInfo={this.state.userInfo}/>:null}
             </Route>
             <Route path = '/chat' >
-              <ChatStore>
-              <ChatBox/>
+              <ChatStore  userInfo={this.state.userInfo}>
+              <ChatBox />
               </ChatStore>
             </Route>
             

@@ -154,12 +154,12 @@ align-items: center;
   align-items: center;
 }
 
-body {
+/* body {
   background-image: url(https://images.unsplash.com/photo-1588611845066-f56f220559e9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2534&q=80);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-}
+} */
 
 .glow-on-hover {
   width: 220px;

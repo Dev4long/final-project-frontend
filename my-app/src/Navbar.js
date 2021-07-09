@@ -9,6 +9,7 @@ import * as GiIcons from "react-icons/gi";
 import * as CgIcons from "react-icons/cg";
 import * as FiIcons from "react-icons/fi";
 import * as BiIcons from "react-icons/bi";
+import * as BsIcons from "react-icons/bs";
 
 
 
@@ -63,7 +64,10 @@ function Navbar() {
                     <CgIcons.CgProfile />My profile
                     </Link>
                     <Link to='/map' className="icons">
-                    <GiIcons.GiPathDistance />Plan route
+                    <GiIcons.GiPathDistance /> Plan route
+                    </Link>
+                    <Link to='/chat' className="icons">
+                    <BsIcons.BsChatDots/>Connect
                     </Link>
                     
                     

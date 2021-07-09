@@ -13,6 +13,9 @@ import MapContainer from './MapContainer'
 import EventsContainer from './EventsContainer'
 import PurchaseContainer from './PurchaseContainer'
 import BoardContainer from './BoardContainer'
+import ChatBox from './ChatBox'
+import ChatStore from './ChatStore';
+
 
 
 
@@ -224,6 +227,11 @@ class App extends React.Component {
             </Route>
             <Route path = '/purchase' >
             {this.state.userInfo.id >= 1 ?  <PurchaseContainer purchases={this.state.purchases} items = {this.state.items} userInfo={this.state.userInfo}/>:null}
+            </Route>
+            <Route path = '/chat' >
+              <ChatStore>
+              <ChatBox/>
+              </ChatStore>
             </Route>
             
           </Switch>

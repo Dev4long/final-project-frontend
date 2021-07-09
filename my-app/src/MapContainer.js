@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { GoogleMap, LoadScript, Marker, InfoWindow  } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import './App.css';
 
 
@@ -8,6 +8,9 @@ import './App.css';
 
 const MapContainer = () => {
   
+  const apiKey = 'AIzaSyAeqMTNQwSfYJ18bza0h4rI3C3z8H-6IQg'
+
+  const [ place, setPlace ] = useState(null);
 
   const [ selected, setSelected ] = useState({});
   
@@ -70,7 +73,15 @@ const MapContainer = () => {
          
      </GoogleMap>
         
-        
+        {/* <GoogleApiComponent
+        apiKey={apiKey}
+        language={'en'}
+        country={'country:in|country:us'}
+        cordinates={true}
+        locationBoxStyle={'custom-style'}
+        locationListStyle={'custom-style-list'}
+        onChange={(e) =>{setPlace({place:e})}}/> */}
+       
      </LoadScript>
      </div>
   )

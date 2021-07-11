@@ -8,7 +8,7 @@ import './App.css';
 
 const MapContainer = () => {
   
-  const apiKey = 'AIzaSyAeqMTNQwSfYJ18bza0h4rI3C3z8H-6IQg'
+  
 
   const [ place, setPlace ] = useState(null);
 
@@ -46,7 +46,7 @@ const MapContainer = () => {
   return (
     <div className="MapContainer">
      <LoadScript 
-       googleMapsApiKey = 'AIzaSyAeqMTNQwSfYJ18bza0h4rI3C3z8H-6IQg'>
+       googleMapsApiKey = ''>
          <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}

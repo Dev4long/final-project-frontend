@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChatBox() {
  
-    const[allChats] = React.useContext(CTX);
+    const {allChats, sendChatAction, user} = React.useContext(CTX);
     
     const topics = Object.keys(allChats)
   
@@ -73,7 +73,7 @@ export default function ChatBox() {
      <div>
          <Paper className= {classes.root}>
              <Typography variant='h4' component='h4'>
-               Chat box
+              Urban Riderz Chat Room
              </Typography>
              <Typography variant= 'h5' component='h5'>
                 {activeTopic}
@@ -111,7 +111,11 @@ export default function ChatBox() {
             onChange={e => changeTextValue(e.target.value)}
              />
 
-               <button className ="glow-on-hover">
+               <button className ="glow-on-hover"
+               onClick={() => {
+               sendChatAction({from: user, msg: textValue, topic: activeTopic}); changeTextValue('')
+               }
+               }>
                    send message
                </button>
              </div>

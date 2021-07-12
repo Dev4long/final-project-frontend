@@ -220,7 +220,7 @@ class App extends React.Component {
              <Profile profile={this.state.userInfo} updateProfile={this.updateProfile}/>
             </Route>
             <Route path = '/map' >
-             <MapContainer />
+             <MapContainer events ={this.state.events}/>
             </Route>
             <Route path = '/events' >
              <EventsContainer events ={this.state.events} userInfo={this.state.userInfo} addEvent ={this.addEvent}/>
@@ -229,8 +229,8 @@ class App extends React.Component {
             {this.state.userInfo.id >= 1 ?  <PurchaseContainer purchases={this.state.purchases} items = {this.state.items} userInfo={this.state.userInfo}/>:null}
             </Route>
             <Route path = '/chat' >
-              <ChatStore>
-              <ChatBox/>
+              <ChatStore  userInfo={this.state.userInfo}>
+              <ChatBox />
               </ChatStore>
             </Route>
             

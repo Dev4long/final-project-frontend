@@ -4,17 +4,36 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-time-picker';
 import "react-time-picker/dist/TimePicker.css"
 
-
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 
 
 
 function EventsForm(props) {
     let [description, setDescription] = useState("")
-    let [selectedDate, setSelectedDate] = useState("");
+    let [selectedDate, setSelectedDate] = useState(null);
     let [time, onChange] = useState('12:00');
     let [image, setImage] = useState("")
     let [location, setLocation] = useState("")
     
+    const[address, setAdress] =React.useState("")
+    const[coordinates, setCoordinates]= React.useState({lat:null, lng:null})
+
+    const handleSelect = async value => {
+      const results = await geocodeByAddress(value);
+      const latLng = await getLatLng(results[0]);
+      setAdress(value);
+      setCoordinates(latLng)
+      console.log(latLng)
+
+      console.log(value)
+
+      console.log(coordinates.lat)
+      console.log(coordinates.lng)
+    }
+  
 
     let handleSubmit = (e) => {
         e.preventDefault()
@@ -27,10 +46,12 @@ function EventsForm(props) {
           body: JSON.stringify({
             description: description,
             image: image,
-            location: location,
+            location: address,
             time: time,
             date: selectedDate,
-            user_id: props.userInfo.id
+            user_id: props.userInfo.id,
+            lat: coordinates.lat,
+            lng: coordinates.lng
             
 
           })
@@ -52,10 +73,22 @@ function EventsForm(props) {
        
 
         return (
+
+
+            
+          
+
+
+
             <div className="container">
+
+
+            
           <form onSubmit={handleSubmit} className="add-session-form" >
             <h3>Create event</h3>
             <br></br>
+
+            
             <strong>Event description</strong>
             <br></br>
             <textarea placeholder="Enter event description" onChange={(e) => {setDescription(e.target.value)}}></textarea>
@@ -66,7 +99,32 @@ function EventsForm(props) {
             <br></br>
             <strong>Event Location</strong>
             <br></br>
-            <input placeholder="Enter a location" onChange={(e) => {setLocation(e.target.value)}}></input>
+            <div>
+  <PlacesAutocomplete
+   value={address} 
+   onChange={setAdress} 
+   onSelect={handleSelect}>
+  {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+    <div>
+      <input {...getInputProps({placeholder: "address"})} />
+      <div>
+        {loading ? <div>...loading</div>: null}
+        {suggestions.map((suggestion) => {
+          const style = {
+            backgroundColor: suggestion.active ? "#08ffc8": "#fff"
+          }
+          // console.log(suggestion)
+
+          return <div {...getSuggestionItemProps(suggestion, {style})}>
+            {suggestion.description}
+            </div>
+        })}
+      </div>
+    </div>
+      )}
+  </PlacesAutocomplete>
+  </div>
+            {/* <input placeholder="Enter a location" onChange={(e) => {setLocation(e.target.value)}}></input> */}
             <br></br>
             <strong>Select a date:</strong>
             <br></br>

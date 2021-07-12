@@ -9,7 +9,7 @@ class EventCard extends React.Component {
 
     return (
       <div>
-       <h3>{this.props.event.description}</h3>
+       <h3>Ride description:{this.props.event.description}</h3>
        <img alt="events" className= "eventImg" src={this.props.event.image}/>
        <h3>Location:{this.props.event.location}</h3>
        <h3>Date:{this.props.event.date.slice(0, 10)}</h3>

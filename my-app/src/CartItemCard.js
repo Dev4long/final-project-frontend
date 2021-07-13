@@ -40,13 +40,13 @@ class CartItemCard extends React.Component {
     // let item1 = (this.props.userInfo.iems.filter(items => items.id) === this.props.item.items_id)
     // console.log(item1)
     return (
-      <div>
+      <div className="cartItem">
        <h3>{this.props.item.name}</h3>
-       <img alt="bike" className= "bikeImg"src={this.props.item.image}/>
+       <img alt="bike" className= "cartItemImg"src={this.props.item.image}/>
        <h3>{this.props.item.price}$</h3>
        <h3>{this.props.item.rating}⭐</h3>
-       <button onClick={() => this.props.deleteItem(this.props.item.id)}>Remove from cart</button>
-       <button onClick={() => this.handleSubmit(this.props.cart)}>purchasae</button>
+       <button className = "glow-on-hover" onClick={() => this.props.deleteItem(this.props.item.id)}>Remove from cart</button>
+       <button className = "glow-on-hover" onClick={() => {this.handleSubmit(this.props.cart); this.props.deleteItem(this.props.item.id) }}>Purchasae item</button>
       </div>
     )
   }

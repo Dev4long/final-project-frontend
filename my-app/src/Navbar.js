@@ -10,6 +10,7 @@ import * as CgIcons from "react-icons/cg";
 import * as FiIcons from "react-icons/fi";
 import * as BiIcons from "react-icons/bi";
 import * as BsIcons from "react-icons/bs";
+import * as RiIcons from "react-icons/ri";
 
 
 
@@ -40,7 +41,7 @@ function Navbar() {
                     </li>
                     <li>
                     <Link to='/events' className="icons">
-                    <FiIcons.FiMapPin />Local events
+                    <RiIcons.RiCalendarEventFill/>Local events
                     </Link>
                     <Link to='/login' className="icons">
                     <HiIcons.HiOutlineLogin />Login/Signup
@@ -64,7 +65,7 @@ function Navbar() {
                     <CgIcons.CgProfile />My profile
                     </Link>
                     <Link to='/map' className="icons">
-                    <GiIcons.GiPathDistance /> Plan route
+                    <FiIcons.FiMapPin/> Events Google maps
                     </Link>
                     <Link to='/chat' className="icons">
                     <BsIcons.BsChatDots/>Connect

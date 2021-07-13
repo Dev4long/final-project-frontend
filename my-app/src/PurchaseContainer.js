@@ -16,7 +16,8 @@ class PurchaseContainer extends React.Component {
 
     return (
       <div className= 'purchases'>
-      {this.props.purchases.map(purchase => { return <PurchaseCard purchase={purchase} key={purchase} userInfo={this.props.userInfo} items={this.props.items}/> })}
+         <h1 style={{color: "white", backgroundColor: "black", marginTop: 50, marginLeft: 50, width: 285}}>Your purchases</h1>
+      {this.props.purchases.map(purchase => { return <PurchaseCard purchase={purchase} key={purchase} userInfo={this.props.userInfo} items={this.props.items} deleteItem={this.props.deleteItem}/> })}
       </div>
     )
   }

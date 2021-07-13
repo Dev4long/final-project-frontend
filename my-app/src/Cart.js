@@ -38,6 +38,7 @@ class Cart extends React.Component {
 
     return (
       <div>
+         <h1 style={{color: "white", backgroundColor: "black", marginTop: 50, marginLeft: 50, width: 170}}>Your Cart</h1>
         {this.props.cart.map(item => { return <CartItemCard item={item} key={item.id} deleteItem={this.props.deleteItem} userInfo={this.props.userInfo} purchaseItem={this.props.purchaseItem}/> })}
         {/* <button onClick={() => this.handleSubmit(this.props.cart)}>purchasae</button> */}
       </div>

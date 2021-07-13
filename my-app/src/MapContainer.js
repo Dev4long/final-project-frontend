@@ -8,31 +8,20 @@ const MapContainer = (props) => {
   
 
 
-console.log(props.events)
 
   let lat = props.events.map(event => event.lat)
-  console.log(lat)
+
   let lng = props.events.map(event => event.lng)
-  console.log(lng)
 
   const [ place, setPlace ] = useState(null);
 
   const [ selected, setSelected ] = useState({});
   
+  console.log(selected)
   const onSelect = item => {
-    setSelected(item);
+    setSelected(item)
+    console.log(setSelected);
   }
-
-
-  const LocationMarker = [{
-    name:"events",
-    location: {
-      lat: lat,
-      lng: props.events.map(event => event.lng)
-    }
-  }]
-
-  console.log(LocationMarker)
 
 
 
@@ -43,9 +32,7 @@ console.log(props.events)
   const defaultCenter = {
       lat: 40.78037895055317, lng: -73.96338565497243
   }
-  console.log(defaultCenter)
 
- 
   return (
 
 
@@ -57,23 +44,29 @@ console.log(props.events)
           center={defaultCenter}>
 
 
-            {props.events.map(item => {
+            {props.events.map(item => { 
+              console.log(item.id)
               return (
-              <Marker key={item.location} description= {item.description} position={{lat: item.lat , lng: item.lng}} onClick={() => onSelect(item)}
+              <Marker key={item.location} description= {item.description} position={{lat: item.lat , lng: item.lng}} onClick={() => onSelect(item
+              )}
                 >
                 {   selected.location && 
               <InfoWindow
-                key={`infowindow${item.location}`}
+                key={item.location}
                 // visible={true}
                 position={{lat: item.lat , lng: item.lng}}
                 clickable={true}
                 onCloseClick={() => setSelected({})}>
-                  <div>
-                    Ride staring location:{item.location}
+                  <div className = "mapDiv">
+                  <img alt="event" className = "mapImage" src={item.image}/>
+                  <br></br>
+                    Meet-up:{item.location}
                     <br></br>
-                    Ride description:{item.description}
+                    Description:{item.description}
                     <br></br>
-                    event starts:{item.time}
+                    Time:{item.time}
+                    <br></br>
+                    Date:{item.date.slice(0, 10)}
                   </div>
                   
                 </InfoWindow>}

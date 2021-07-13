@@ -20,28 +20,33 @@ import './App.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin: '50px',
+        margin: '250px',
         padding: theme.spacing(3, 2),
         textAlign: 'center',
+        backgroundColor: "black",
+        color: "white"
    
     },
     flex: {
         display: 'flex',
         alignItems: 'center',
+        color: "white"
     },
     topicsWindow: {
         width: '30%',
         height: '300px',
-        borderRight: '5px solid green'
+        borderRight: '5px solid gold'
     },
     chatWindow: {
         width: '70%',
         height: 'px',
-        padding: '20px'
+        padding: '20px',
+        color: "white"
     },
     chatBox: {
         width: '85%',
-      
+        backgroundColor: "white",
+        color: "white"
     },
     button: {
         width: '15%',
@@ -62,10 +67,16 @@ export default function ChatBox() {
     const classes = useStyles()
 
    
-   
+    React.useEffect(() => {
+        if (localStorage.token !== "undefined")
+        handleLogin(true)
+    }, [])
+
+    const [logInStatus, handleLogin] = React.useState(false);
 
     const [textValue, changeTextValue] = React.useState('')
     const [activeTopic, changeActiveTopic] = React.useState(topics[0])
+
     
  
     return(

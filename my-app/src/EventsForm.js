@@ -13,7 +13,7 @@ import PlacesAutocomplete, {
 
 function EventsForm(props) {
     let [description, setDescription] = useState("")
-    let [selectedDate, setSelectedDate] = useState(null);
+    let [selectedDate, setSelectedDate] = useState("");
     let [time, onChange] = useState('12:00');
     let [image, setImage] = useState("")
     let [location, setLocation] = useState("")
@@ -60,10 +60,11 @@ function EventsForm(props) {
           .then(newEvent => {
             props.addEvent(newEvent)
             console.log(newEvent)
-            // setDescription("")
-            // setSelectedDate("")
-            // onChange("")
-            // setDurationPrice("")
+            setDescription("")
+            setSelectedDate("")
+            onChange("")
+            setImage("")
+            setAdress("")
             alert("Event posted")
           })
     }
@@ -80,7 +81,7 @@ function EventsForm(props) {
 
 
 
-            <div className="container">
+            <div className="eventForm">
 
 
             
@@ -101,17 +102,18 @@ function EventsForm(props) {
             <br></br>
             <div>
   <PlacesAutocomplete
+   
    value={address} 
    onChange={setAdress} 
    onSelect={handleSelect}>
   {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-    <div>
+    <div className = "autocomplete">
       <input {...getInputProps({placeholder: "address"})} />
       <div>
         {loading ? <div>...loading</div>: null}
         {suggestions.map((suggestion) => {
           const style = {
-            backgroundColor: suggestion.active ? "#08ffc8": "#fff"
+            backgroundColor: suggestion.active ? "#DC143C": "#fff"
           }
           // console.log(suggestion)
 
@@ -138,6 +140,7 @@ function EventsForm(props) {
             <strong>Select a time:</strong>
             <br></br>
             <TimePicker
+            className= 'time'
             onChange={onChange}
             // value={value}
             />
@@ -145,13 +148,13 @@ function EventsForm(props) {
            
           <br/>
           <br/>
-            <input 
+            <button 
                 type="submit" 
                 name="submit" 
                 value="Post new event" 
-                className="submit"
+                className='glow-on-hover'
                 // class="btn btn-primary mr-1"
-            />
+            >Post new event</button>
           </form>
         </div>
         )

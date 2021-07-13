@@ -25,10 +25,10 @@ class EventsContainer extends React.Component {
 
     return (
       <div className= 'events'>
-      {this.props.userInfo.id >= 1 ? <button onClick ={() => this.handleEventsForm()}>Create new event</button>: null}
+      {this.props.userInfo.id >= 1 ? <button style={{marginLeft: 900, marginTop: 50}} className = 'glow-on-hover' onClick ={() => this.handleEventsForm()}>Create new event</button>: null}
        {this.state.eventsForm ? <EventsForm addEvent = {this.props.addEvent} userInfo={this.props.userInfo}/>:null}
        <br></br>
-       {this.props.events.map(event => { return <EventCard event={event} key={event.id} userInfo={this.props.userInfo} /> })}
+       {this.props.events.map(event => { return <EventCard event={event} key={event.id} userInfo={this.props.userInfo} deleteEvent={this.props.deleteEvent} /> })}
       </div>
     )
   }

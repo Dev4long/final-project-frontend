@@ -15,7 +15,7 @@ import PurchaseContainer from './PurchaseContainer'
 import BoardContainer from './BoardContainer'
 import ChatBox from './ChatBox'
 import ChatStore from './ChatStore';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 
@@ -139,29 +139,31 @@ class App extends React.Component {
   // userInfo.token try to use this for if user loggin to conditionally render the logout button
   
 
-  // deleteItem = (itemObj) => {
+  deleteEvent = (itemObj) => {
     
-  //   let deletedCartArr = this.state.cart.filter(item => item.item_id !== itemObj)
+    let deletedEventArr = this.state.events.filter(item => item.id !== itemObj)
     
-  //   fetch(`http://localhost:3000/api/v1/carts/${itemObj}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Authorization": `Bearer ${localStorage.token}`,
-  //       "Content-Type": "application/json"
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(() => {
-  //       this.setState({
-  //         cart: deletedCartArr
-  //       })
+    fetch(`http://localhost:3000/api/v1/events/${itemObj}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+        "Content-Type": "application/json"
+      },
+    })
+      .then(res => res.json())
+      .then(() => {
+        this.setState({
+          events: deletedEventArr
+        })
 
-  //     })
-  // }
+      })
+  }
 
   addItem = (itemObj) => {
+    alert("item added to cart")
     let newCartArray = [...this.state.cart, itemObj]
     this.setState({ cart: newCartArray })
+    
   
   }
   
@@ -171,6 +173,7 @@ class App extends React.Component {
   
   }
   addPurchase = (perchObj) => {
+    alert("item purchased")
     let newPurchArray = [...this.state.purchases, perchObj]
     this.setState({ purchases: newPurchArray })
   
@@ -201,7 +204,7 @@ class App extends React.Component {
             <Route path = '/login' >
               <Login login= {this.login}/>
               <Signup signup={this.signup} />
-              <button className={"button"}onClick={this.logOut}>Logout</button>
+              <button button style={{margin: 'auto'}} className ={"glow-on-hover"} onClick={this.logOut}>Logout</button>
               {/* {this.state.userInfo.id >= 1 ? <button className={"button"}onClick={this.logOut}>Logout</button> : null} */}
             </Route>
             <Route path = '/bikes' >
@@ -223,10 +226,10 @@ class App extends React.Component {
              <MapContainer events ={this.state.events}/>
             </Route>
             <Route path = '/events' >
-             <EventsContainer events ={this.state.events} userInfo={this.state.userInfo} addEvent ={this.addEvent}/>
+             <EventsContainer events ={this.state.events} userInfo={this.state.userInfo} addEvent ={this.addEvent} deleteEvent={this.deleteEvent}/>
             </Route>
             <Route path = '/purchase' >
-            {this.state.userInfo.id >= 1 ?  <PurchaseContainer purchases={this.state.purchases} items = {this.state.items} userInfo={this.state.userInfo}/>:null}
+            {this.state.userInfo.id >= 1 ?  <PurchaseContainer purchases={this.state.purchases} items = {this.state.items} userInfo={this.state.userInfo} />:null}
             </Route>
             <Route path = '/chat' >
               <ChatStore  userInfo={this.state.userInfo}>

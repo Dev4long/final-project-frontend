@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-// import { AiOutlineConsoleSql } from 'react-icons/ai';
+
 
 
 class CartItemCard extends React.Component {
@@ -8,11 +8,6 @@ class CartItemCard extends React.Component {
 
   handleSubmit = (e) => {
     
-    // let items_id = this.props.cart.map(cart => cart.id)
-    // console.log(items_id)
-    // console.log(this.props.cart)
-
-    // e.preventDefault()
     fetch('http://localhost:3000/api/v1/purchases', {
       method: "POST",
       headers: {
@@ -29,16 +24,14 @@ class CartItemCard extends React.Component {
       .then(perchObj => {
         this.props.purchaseItem(perchObj)
         console.log(perchObj)
-        // this.props.addItem(itemObj)
-        // alert("Bike placed in your cart")
+       
       })
   }
 
 
   render() {
  
-    // let item1 = (this.props.userInfo.iems.filter(items => items.id) === this.props.item.items_id)
-    // console.log(item1)
+
     return (
       <div className="cartItem">
        <h3>{this.props.item.name}</h3>
@@ -46,7 +39,7 @@ class CartItemCard extends React.Component {
        <h3>{this.props.item.price}$</h3>
        <h3>{this.props.item.rating}⭐</h3>
        <button className = "glow-on-hover" onClick={() => this.props.deleteItem(this.props.item.id)}>Remove from cart</button>
-       <button className = "glow-on-hover" onClick={() => {this.handleSubmit(this.props.cart); this.props.deleteItem(this.props.item.id) }}>Purchasae item</button>
+       <button style ={{marginLeft: "1em"}}className = "glow-on-hover" onClick={() => {this.handleSubmit(this.props.cart); this.props.deleteItem(this.props.item.id) }}>Purchasae item</button>
       </div>
     )
   }

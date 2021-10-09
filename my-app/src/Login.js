@@ -18,7 +18,6 @@ const Login = (props) => {
                 <br></br>
                 <br></br>
                 <button className ="glow-on-hover">Log in</button>
-                {/* <input type="submit" /> */}
             </form>
         </div>
     )

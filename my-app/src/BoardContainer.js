@@ -16,9 +16,9 @@ class BoardContainer extends React.Component {
 
 
     return (
-      <div className= 'bikes'>
+      <div className= 'bikes' style={{display: "flex", flexDisplay: "column"}}>
          <Container>
-          <Row lg={4}>
+          <Row lg={4} >
           {this.props.boards.map(board => { return <BoardCard board={board} key={board.id} addItem={this.props.addItem} cart={this.props.cart} userInfo={this.props.userInfo}/>  })}
           </Row>
           </Container>

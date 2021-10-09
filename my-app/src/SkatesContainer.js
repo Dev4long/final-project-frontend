@@ -14,7 +14,7 @@ class SkatesContainer extends React.Component {
   render() {
 
     return (
-      <div>
+      <div style={{display: "flex", flexDisplay: "column"}}>
         <Container>
           <Row lg={4}>
        {this.props.skates.map(skate => { return <SkateCard skate={skate} key={skate.id} addItem={this.props.addItem} cart={this.props.cart} userInfo={this.props.userInfo}/>})}

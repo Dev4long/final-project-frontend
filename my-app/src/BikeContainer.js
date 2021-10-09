@@ -16,7 +16,7 @@ class BikeContainer extends React.Component {
 
 
     return (
-      <div className= 'bikes1' style={{display: "flex", flexDisplay: ""}}>
+      <div className= 'bikes1' style={{display: "flex", flexDisplay: "column"}}>
         <Container>
         <Row lg={4}>
        {this.props.bikes.map(bike => { return <BikeCard bike={bike} key={bike.id} addItem={this.props.addItem} cart={this.props.cart} userInfo={this.props.userInfo}/>  })}

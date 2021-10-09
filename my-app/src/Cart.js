@@ -10,7 +10,7 @@ class Cart extends React.Component {
     console.log(items_id)
     console.log(this.props.cart)
 
-    // e.preventDefault()
+    
     fetch('http://localhost:3000/api/v1/purchases', {
       method: "POST",
       headers: {
@@ -26,7 +26,6 @@ class Cart extends React.Component {
       .then(res => res.json())
       .then(perchObj => {
         this.props.purchaseItem(perchObj)
-        // console.log(perchObj)
         alert("Item purchased")
       })
   }
@@ -40,7 +39,6 @@ class Cart extends React.Component {
       <div>
          <h1 style={{color: "white", backgroundColor: "black", marginTop: 50, marginLeft: 50, width: 170}}>Your Cart</h1>
         {this.props.cart.map(item => { return <CartItemCard item={item} key={item.id} deleteItem={this.props.deleteItem} userInfo={this.props.userInfo} purchaseItem={this.props.purchaseItem}/> })}
-        {/* <button onClick={() => this.handleSubmit(this.props.cart)}>purchasae</button> */}
       </div>
     )
   }

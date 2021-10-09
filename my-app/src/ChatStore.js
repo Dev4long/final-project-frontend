@@ -9,18 +9,15 @@ export const CTX = React.createContext();
 const initState= {
     Skaterz:[
         {from:'admin', msg: "hello skaterz"},
-        // {from:'yer', msg: "pow"},
-        // {from:'oh', msg: "aii"},
+        
     ],
     Bikerz: [
         {from:'admin', msg: "hello bikerz"},
-        // {from:'dgfd', msg: "hgg"},
-        // {from:'ff', msg: "yup"},
+       
     ],
     RollerSkaterz: [
         {from:'admin', msg: "hello rollerskaterz"},
-        // {from:'dgfd', msg: "hgg"},
-        // {from:'ff', msg: "yup"},
+        
     ]
 }
 
@@ -66,9 +63,9 @@ export default function ChatStore(props){
     const userT = props.userInfo.name
      
     const user = 
-    // console.log(user)
-    'user' 
-    // + Math.random(100).toFixed(2)
+    
+    'rider' 
+
    
 
     return(
@@ -79,8 +76,3 @@ export default function ChatStore(props){
 
 }
 
-// if (!socket) {
-//     socket = io(':3005');
-//     socket.on("chat message", function(msg){console.log(msg)
-//     })
-// }

@@ -68,8 +68,7 @@ function EventsForm(props) {
             alert("Event posted")
           })
     }
-  //  console.log(props.mySessions.sessions)
-      // console.log(props.trainer)
+
 
        
 
@@ -115,7 +114,7 @@ function EventsForm(props) {
           const style = {
             backgroundColor: suggestion.active ? "#DC143C": "#fff"
           }
-          // console.log(suggestion)
+         
 
           return <div {...getSuggestionItemProps(suggestion, {style})}>
             {suggestion.description}
@@ -126,7 +125,7 @@ function EventsForm(props) {
       )}
   </PlacesAutocomplete>
   </div>
-            {/* <input placeholder="Enter a location" onChange={(e) => {setLocation(e.target.value)}}></input> */}
+           
             <br></br>
             <strong>Select a date:</strong>
             <br></br>

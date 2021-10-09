@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
+
 import ListItemText from '@material-ui/core/ListItemText';
 import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField';
@@ -24,13 +24,15 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3, 2),
         textAlign: 'center',
         backgroundColor: "black",
-        color: "white"
+        color: "white",
+        fontFamily: 'Lobster'
    
     },
     flex: {
         display: 'flex',
         alignItems: 'center',
-        color: "white"
+        color: "white",
+        fontFamily: 'Lobster'
     },
     topicsWindow: {
         width: '30%',
@@ -41,15 +43,18 @@ const useStyles = makeStyles((theme) => ({
         width: '70%',
         height: 'px',
         padding: '20px',
-        color: "white"
+        color: "white",  
+        fontFamily: 'Lobster'
     },
     chatBox: {
         width: '85%',
         backgroundColor: "white",
-        color: "white"
+        color: "white",
+        fontFamily: 'Lobster'
     },
     button: {
         width: '15%',
+
        
     },
   }));

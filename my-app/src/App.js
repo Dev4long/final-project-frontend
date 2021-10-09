@@ -60,17 +60,6 @@ class App extends React.Component {
           events: events
         })
         )
-      //   fetch('http://localhost:3000/api/v1/purchases', {
-      //   method: "GET",
-      //   headers: {
-      //     "Authorization": `Bearer ${localStorage.token}`
-      //   }
-      // })
-      //   .then(res => res.json())
-      //   .then(purchase => this.setState({
-      //     purchases: purchase
-      //   })
-      //   )
   }
 
   
@@ -135,8 +124,6 @@ class App extends React.Component {
   
 
 
-  // LocalStorage.token? button oclick logout = const localstorage.clear
-  // userInfo.token try to use this for if user loggin to conditionally render the logout button
   
 
   deleteEvent = (itemObj) => {
@@ -192,8 +179,7 @@ class App extends React.Component {
   }
   render() {
 
-  //  console.log(this.state.items.map(item => item.id)) === (this.state.purchases.map(purchase => purchase.item_id))
-  //  console.log(this.state.cart.filter(cart => cart.user_id === this.state.userInfo.id))
+  
 
     return (
       <div>
@@ -204,8 +190,9 @@ class App extends React.Component {
             <Route path = '/login' >
               <Login login= {this.login}/>
               <Signup signup={this.signup} />
-              <button button style={{margin: 'auto'}} className ={"glow-on-hover"} onClick={this.logOut}>Logout</button>
-              {/* {this.state.userInfo.id >= 1 ? <button className={"button"}onClick={this.logOut}>Logout</button> : null} */}
+              <div  style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+              {this.state.userInfo.id >= 1 ? <button className ="glow-on-hover" onClick={this.logOut}>Logout</button>: null}
+              </div>
             </Route>
             <Route path = '/bikes' >
               <BikeContainer bikes={this.state.bikes} addItem={this.addItem} cart={this.state.cart} userInfo={this.state.userInfo}/>

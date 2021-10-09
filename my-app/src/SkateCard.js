@@ -12,13 +12,13 @@ class SkateCard extends React.Component {
 
     return (
       <Col>
-      <Card>
+      <Card style= {{width: '285px' , height: '450px', margin: '1em',opacity: "0.95", marginLeft: '1em'}}>
       
-       <Card.Title>{this.props.skate.name}</Card.Title>
-       <Card.Img alt="skates" src={this.props.skate.image}/>
+       <Card.Title className="cardTitle">{this.props.skate.name}</Card.Title>
+       <Card.Img style= {{width: '200px' , height: '200px'}} alt="skates" src={this.props.skate.image}/>
        <Card.Body>
-       <Card.Text>{this.props.skate.price}$</Card.Text>
-       <Card.Text>{this.props.skate.rating}⭐</Card.Text>
+       <Card.Text className="cardInfo">{this.props.skate.price}$</Card.Text>
+       <Card.Text className="cardInfo">{this.props.skate.rating}⭐</Card.Text>
        {this.props.userInfo.id >= 1 ? <button className = "glow-on-hover" onClick={() => this.props.addItem(this.props.skate)}>Add to cart</button> :null}
        </Card.Body>
        </Card>

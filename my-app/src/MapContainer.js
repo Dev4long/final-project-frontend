@@ -15,12 +15,12 @@ const MapContainer = (props) => {
 
   const [ place, setPlace ] = useState(null);
 
-  const [ selected, setSelected ] = useState({});
+  const [ selected, setSelected ] = useState([]);
   
   console.log(selected)
   const onSelect = item => {
     setSelected(item)
-    console.log(setSelected);
+    console.log(item);
   }
 
 
@@ -53,7 +53,6 @@ const MapContainer = (props) => {
                 {   selected.location && 
               <InfoWindow
                 key={item.location}
-                // visible={true}
                 position={{lat: item.lat , lng: item.lng}}
                 clickable={true}
                 onCloseClick={() => setSelected({})}>
@@ -74,18 +73,6 @@ const MapContainer = (props) => {
               )
             })
          }
-         {/* {
-            selected.location && 
-            (
-              <InfoWindow
-              position={selected.location}
-              clickable={true}
-              onCloseClick={() => setSelected({})}
-            >
-              <p>{selected.location}</p>
-            </InfoWindow>
-            )
-         } */}
       
 
         </GoogleMap>

@@ -72,13 +72,6 @@ let [bio,setBio] = useState("")
       <br></br>
       <br></br>
       <button  className= "glow-on-hover" >Save Changes</button>
-      {/* <input 
-                type="submit" 
-                name="submit" 
-                value="Save changes" 
-                className= "glow-on-hover"
-                // class="profileButton"
-            /> */}
       </form>
       </div>
     )
